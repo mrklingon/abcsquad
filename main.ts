@@ -33,6 +33,7 @@ controller.B.onEvent(ControllerButtonEvent.Pressed, function () {
         effects.clouds.endScreenEffect()
         tiles.setTilemap(tilemap`space`)
         pause(2000)
+        state = 1
         startPlanet()
     }
 })
@@ -97,6 +98,7 @@ function laserBlast () {
     zap.setFlag(SpriteFlag.DestroyOnWall, true)
 }
 sprites.onOverlap(SpriteKind.Player, SpriteKind.ast, function (sprite, otherSprite) {
+    otherSprite.destroy(effects.fire, 500)
     music.knock.play()
     info.changeLifeBy(-1)
     scene.cameraShake(4, 500)
