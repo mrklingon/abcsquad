@@ -61,6 +61,7 @@ sprites.onOverlap(SpriteKind.Projectile, SpriteKind.ast, function (sprite, other
 function laserBlast () {
     zap = sprites.create(assets.image`laser`, SpriteKind.Projectile)
     zap.setPosition(Luke.x, Luke.y)
+    music.pewPew.play()
     zap.setVelocity(200, 0)
     zap.setFlag(SpriteFlag.DestroyOnWall, true)
 }
@@ -81,7 +82,7 @@ let Type = 0
 let Luke: Sprite = null
 let vtype = 0
 let person = 0
-info.setLife(5)
+info.setLife(10)
 person = 1
 vtype = 3
 Luke = sprites.create(assets.image`Pilot`, SpriteKind.Player)
