@@ -43,7 +43,7 @@ state = 0
 createHangar()
 forever(function () {
     if (state == 0) {
-        if (30 > Luke.x || 290 < Luke.x) {
+        if (40 > Luke.x || 290 < Luke.x) {
             if (vtype == Type) {
                 state = 1
                 tiles.setTilemap(tilemap`space`)
