@@ -136,6 +136,82 @@ fffffffffffffffff555............
 ............................................................
 ............................................................
 `;
+            case "image6":
+            case "asteroid":return img`
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . f f . . . 
+. . . . . . . f f f f f f . . . 
+. . . f f f f f a a a a f . . . 
+. . . f a a a a a f a a f . . . 
+. . . f a a a a a f a a f f . . 
+. . . f a a a a f f a a a f f . 
+. . . f a a a f f a a a a a f . 
+. . f f a a a f a a a a a a f . 
+. f f a a a a a a a a a a a f . 
+. f a a a a a a a a a a a f f . 
+. f a a a a a a a a a a f . . . 
+. f f f f a a a a f f f f . . . 
+. . . . f a a a f f f f . . . . 
+. . . f f f f f . . . . . . . . 
+`;
+            case "image7":
+            case "asteroid0":return img`
+. . . . . . . . . . . . . . . . 
+. . f f f f . . . . . . . . . . 
+. . f 6 6 f f . . . . . . . . . 
+f . f 6 6 6 f f f f f f . . . . 
+f f f 6 6 6 6 6 6 6 6 f . . . . 
+f 6 6 6 6 6 6 6 6 6 6 f . . . . 
+f 6 6 6 6 6 6 6 6 6 6 f . . . . 
+f 6 6 6 6 6 f f 6 6 6 f f . . . 
+. f 6 6 6 6 6 f f 6 6 6 f . . . 
+. f f 6 6 6 6 6 f f f 6 f . . . 
+. f f 6 6 6 6 6 6 6 6 6 f . . . 
+. f f 6 6 6 6 6 6 6 6 6 f f . . 
+. . f f 6 6 6 6 6 f f f f f . . 
+. . . . f 6 6 6 f f . . . . . . 
+. . . . f f f f f . . . . . . . 
+. . . . . . . . . . . . . . . . 
+`;
+            case "image8":
+            case "asteroid1":return img`
+. . . f f f f f . . . . . . . . 
+. . . . f c c c f f f f . . . . 
+. f f f f c c c c f f f f . . . 
+. f c c c c c c c c c c f . . . 
+. f c c c c c c c c c c c f f . 
+. f f c c c c c c c c c c c f . 
+. . f f c c c f c c c c c c f . 
+. . . f c c c f f c c c c c f . 
+. . . f c c c c f f c c c f f . 
+. . . f c c c c c f c c f f . . 
+. . . f c c c c c f c c f . . . 
+. . . f f f f f c c c c f . . . 
+. . . . . . . f f f f f f . . . 
+. . . . . . . . . . . f f . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+`;
+            case "image9":
+            case "asteroid2":return img`
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . f f f f . . 
+. . . . . . . . . f f 5 5 f . . 
+. . . . f f f f f f 5 5 5 f . f 
+. . . . f 5 5 5 5 5 5 5 5 f f f 
+. . . . f 5 5 5 5 5 5 5 5 5 5 f 
+. . . . f 5 5 5 5 5 5 5 5 5 5 f 
+. . . f f 5 5 5 f f 5 5 5 5 5 f 
+. . . f 5 5 5 f f 5 5 5 5 5 f . 
+. . . f 5 f f f 5 5 5 5 5 f f . 
+. . . f 5 5 5 5 5 5 5 5 5 f f . 
+. . f f 5 5 5 5 5 5 5 5 5 f f . 
+. . f f f f f 5 5 5 5 5 f f . . 
+. . . . . . f f 5 5 5 f . . . . 
+. . . . . . . f f f f f . . . . 
+. . . . . . . . . . . . . . . . 
+`;
         }
         return null;
     })

@@ -24,6 +24,26 @@
         "mimeType": "image/x-mkcd-f4",
         "displayName": "planet"
     },
+    "image6": {
+        "data": "hwQQABAAAAAAAAAAAAAAAAAAAAAA//8AAAAAAPCv+gAAAP///6r68AAAr6qqqvr/AACvqqqqqvoAAK+qqqqq+gDwr6r/qqr6APCq+q+qqg8A8Pr/qqr6DwDwqqqqqvoPAP+qqqqq+g8A//+vqqr/AAAAAP+q+gAAAAAA8P//AAAAAAAAAAAAAA==",
+        "mimeType": "image/x-mkcd-f4",
+        "displayName": "asteroid"
+    },
+    "image7": {
+        "data": "hwQQABAAAAAA8P//AAAAAAAAb2b//wAA8P9vZvb/DwDwZmZmZmYPAPBmZmZmZvYP8G9mZmZmZg8A/2b2ZmZmDwDwZvZvZmYPAPBmZv9m9g8A8GZm9mb/AADwZmb2Zg8AAPD//2ZmDwAAAADw//8PAAAAAAAA8A8AAAAAAAAAAAAAAAAAAAAAAA==",
+        "mimeType": "image/x-mkcd-f4",
+        "displayName": "asteroid0"
+    },
+    "image8": {
+        "data": "hwQQABAAAAAAAAAAAAAAAAD//wAAAAAAAM/8DwAAAAAPz8z///8AAP/PzMzM/AAAz8zMzMz8AADPzMzMzPwAAM/MzP/M/A8A8MzM/M/MDwDwz8zM/88PAPDPzMzMzA8A8M/MzMzM/wAA/8zM/P//AAAAz8z/AAAAAAD//w8AAAAAAAAAAAAAAA==",
+        "mimeType": "image/x-mkcd-f4",
+        "displayName": "asteroid1"
+    },
+    "image9": {
+        "data": "hwQQABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADwDwAAAADw//8PAADw//9VVQ8AAPBVVfVVDwAA8FVV9VX/AADwVVX/VfUPAPBV9V9VVQ8A/1X1VVVVD/BfVVVVVVUP8FVVVVVV9Q/wVVVVVVUPAPD/X1X1/w8AAABfVf//AAAA8P//AAAAAA==",
+        "mimeType": "image/x-mkcd-f4",
+        "displayName": "asteroid2"
+    },
     "*": {
         "mimeType": "image/x-mkcd-f4",
         "dataEncoding": "base64",
