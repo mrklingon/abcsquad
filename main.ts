@@ -5,6 +5,11 @@ namespace SpriteKind {
 }
 sprites.onOverlap(SpriteKind.Player, SpriteKind.Vehicle, function (sprite, otherSprite) {
     if (Type == person) {
+        if (XWing == otherSprite) {
+            ship = "x"
+        } else {
+            ship = "y"
+        }
         otherSprite.destroy()
         sprite.setImage(otherSprite.image)
         Type = vtype
@@ -12,8 +17,14 @@ sprites.onOverlap(SpriteKind.Player, SpriteKind.Vehicle, function (sprite, other
 })
 controller.B.onEvent(ControllerButtonEvent.Pressed, function () {
     if (state == 0 && Type == vtype) {
-        veh = sprites.create(Luke.image, SpriteKind.Vehicle)
-        veh.setPosition(Luke.x - 32, Luke.y)
+        if (ship == "x") {
+            XWing = sprites.create(Luke.image, SpriteKind.Vehicle)
+            XWing.setPosition(Luke.x - 32, Luke.y)
+        } else {
+            YWing = sprites.create(Luke.image, SpriteKind.Vehicle)
+            YWing.setPosition(Luke.x - 32, Luke.y)
+        }
+        ship = ""
         Luke.setImage(assets.image`Pilot`)
         pause(500)
         Type = person
@@ -47,6 +58,16 @@ function startPlanet () {
     newplanet.setBounceOnWall(true)
     planetNOW = 1
 }
+controller.left.onEvent(ControllerButtonEvent.Pressed, function () {
+    if (Type != person) {
+        if ("x" == ship) {
+            Luke.setImage(xs[1])
+        } else {
+            Luke.setImage(ys[1])
+        }
+        dir = -1
+    }
+})
 sprites.onOverlap(SpriteKind.Player, SpriteKind.orb, function (sprite, otherSprite) {
     state = 2
     newplanet.destroy()
@@ -58,11 +79,21 @@ sprites.onOverlap(SpriteKind.Projectile, SpriteKind.ast, function (sprite, other
     otherSprite.destroy(effects.fire, 200)
     info.changeScoreBy(5)
 })
+controller.right.onEvent(ControllerButtonEvent.Pressed, function () {
+    if (Type != person) {
+        if ("x" == ship) {
+            Luke.setImage(xs[0])
+        } else {
+            Luke.setImage(ys[0])
+        }
+        dir = 1
+    }
+})
 function laserBlast () {
     zap = sprites.create(assets.image`laser`, SpriteKind.Projectile)
     zap.setPosition(Luke.x, Luke.y)
     music.pewPew.play()
-    zap.setVelocity(200, 0)
+    zap.setVelocity(dir * 300, 0)
     zap.setFlag(SpriteFlag.DestroyOnWall, true)
 }
 sprites.onOverlap(SpriteKind.Player, SpriteKind.ast, function (sprite, otherSprite) {
@@ -75,20 +106,26 @@ let zap: Sprite = null
 let newplanet: Sprite = null
 let YWing: Sprite = null
 let XWing: Sprite = null
-let veh: Sprite = null
+let dir = 0
+let ys: Image[] = []
+let xs: Image[] = []
 let planetNOW = 0
 let state = 0
 let Type = 0
 let Luke: Sprite = null
 let vtype = 0
 let person = 0
+let ship = ""
 info.setLife(10)
+ship = ""
 person = 1
 vtype = 3
 Luke = sprites.create(assets.image`Pilot`, SpriteKind.Player)
 Type = person
 state = 0
 planetNOW = 0
+xs = [assets.image`myImage`, assets.image`myImage0`]
+ys = [assets.image`Y-Wing`, assets.image`Y-Wing0`]
 let rocks = [
 assets.image`asteroid`,
 assets.image`asteroid0`,
@@ -96,6 +133,7 @@ assets.image`asteroid1`,
 assets.image`asteroid2`
 ]
 createHangar()
+dir = 1
 forever(function () {
     if (40 > Luke.x || 250 < Luke.x) {
         if (state == 0) {
