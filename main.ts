@@ -136,6 +136,8 @@ assets.image`asteroid2`
 ]
 createHangar()
 dir = 1
+let planets: number[] = []
+let pscapes: number[] = []
 forever(function () {
     if (40 > Luke.x || 250 < Luke.x) {
         if (state == 0) {
