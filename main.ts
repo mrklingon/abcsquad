@@ -34,7 +34,7 @@ controller.B.onEvent(ControllerButtonEvent.Pressed, function () {
         tiles.setTilemap(tilemap`space`)
         pause(2000)
         state = 1
-        startPlanet()
+        startPlanet(randint(0, 2))
     }
 })
 function createHangar () {
@@ -52,8 +52,9 @@ controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
         laserBlast()
     }
 })
-function startPlanet () {
-    newplanet = sprites.create(assets.image`planet`, SpriteKind.orb)
+function startPlanet (num: number) {
+    Planet = num
+    newplanet = sprites.create(planets[num], SpriteKind.orb)
     newplanet.setPosition(116, 91)
     newplanet.setVelocity(randint(-50, 50), randint(-50, 50))
     newplanet.setBounceOnWall(true)
@@ -72,9 +73,21 @@ controller.left.onEvent(ControllerButtonEvent.Pressed, function () {
 sprites.onOverlap(SpriteKind.Player, SpriteKind.orb, function (sprite, otherSprite) {
     state = 2
     newplanet.destroy()
-    scene.setBackgroundColor(9)
-    effects.clouds.startScreenEffect()
-    tiles.setTilemap(tilemap`planetscape1`)
+    if (Planet == 0) {
+        scene.setBackgroundColor(9)
+        effects.clouds.startScreenEffect()
+        tiles.setTilemap(tilemap`planetscape1`)
+    }
+    if (Planet == 1) {
+        scene.setBackgroundColor(5)
+        effects.clouds.startScreenEffect()
+        tiles.setTilemap(tilemap`planetscape2`)
+    }
+    if (Planet == 1) {
+        scene.setBackgroundColor(6)
+        effects.clouds.startScreenEffect()
+        tiles.setTilemap(tilemap`planetscape3`)
+    }
 })
 sprites.onOverlap(SpriteKind.Projectile, SpriteKind.ast, function (sprite, otherSprite) {
     otherSprite.destroy(effects.fire, 200)
@@ -106,8 +119,10 @@ sprites.onOverlap(SpriteKind.Player, SpriteKind.ast, function (sprite, otherSpri
 let rck: Sprite = null
 let zap: Sprite = null
 let newplanet: Sprite = null
+let Planet = 0
 let YWing: Sprite = null
 let XWing: Sprite = null
+let planets: Image[] = []
 let dir = 0
 let ys: Image[] = []
 let xs: Image[] = []
@@ -136,8 +151,25 @@ assets.image`asteroid2`
 ]
 createHangar()
 dir = 1
-let planets: number[] = []
-let pscapes: number[] = []
+planets = [assets.image`planet`, assets.image`planet0`, assets.image`planet1`]
+let pscapes = [img`
+    . . . . . . . . . . . . . . . . 
+    . . . . . . . . . . . . . . . . 
+    . . . . . . . . . . . . . . . . 
+    . . . . . . . . . . . . . . . . 
+    . . . . . . . . . . . . . . . . 
+    . . . . . . . . . . . . . . . . 
+    . . . . . . . . . . . . . . . . 
+    . . . . . . . . . . . . . . . . 
+    . . . . . . . . . . . . . . . . 
+    . . . . . . . . . . . . . . . . 
+    . . . . . . . . . . . . . . . . 
+    . . . . . . . . . . . . . . . . 
+    . . . . . . . . . . . . . . . . 
+    . . . . . . . . . . . . . . . . 
+    . . . . . . . . . . . . . . . . 
+    . . . . . . . . . . . . . . . . 
+    `]
 forever(function () {
     if (40 > Luke.x || 250 < Luke.x) {
         if (state == 0) {
@@ -159,7 +191,7 @@ forever(function () {
 forever(function () {
     if (planetNOW == 0 && 1 == state) {
         pause(5000)
-        startPlanet()
+        startPlanet(randint(0, 2))
     }
 })
 forever(function () {
