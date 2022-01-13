@@ -116,6 +116,17 @@ sprites.onOverlap(SpriteKind.Player, SpriteKind.ast, function (sprite, otherSpri
     info.changeLifeBy(-1)
     scene.cameraShake(4, 500)
 })
+sprites.onOverlap(SpriteKind.Projectile, SpriteKind.Enemy, function (sprite, otherSprite) {
+    otherSprite.destroy(effects.fire, 200)
+    info.changeScoreBy(5)
+})
+sprites.onOverlap(SpriteKind.Player, SpriteKind.Enemy, function (sprite, otherSprite) {
+    otherSprite.destroy(effects.fire, 500)
+    music.knock.play()
+    info.changeLifeBy(-1)
+    scene.cameraShake(4, 500)
+})
+let villain: Sprite = null
 let rck: Sprite = null
 let zap: Sprite = null
 let newplanet: Sprite = null
@@ -186,5 +197,13 @@ forever(function () {
             rck.setFlag(SpriteFlag.AutoDestroy, true)
             pause(500)
         }
+    }
+    if (state == 2) {
+        villain = sprites.create(monsters[Planet], SpriteKind.Enemy)
+        villain.setPosition(300, randint(50, 100))
+        villain.follow(Luke, randint(50, 150))
+        villain.setBounceOnWall(true)
+        villain.setFlag(SpriteFlag.AutoDestroy, true)
+        pause(randint(250, 500))
     }
 })
