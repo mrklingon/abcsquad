@@ -83,7 +83,7 @@ sprites.onOverlap(SpriteKind.Player, SpriteKind.orb, function (sprite, otherSpri
         effects.clouds.startScreenEffect()
         tiles.setTilemap(tilemap`planetscape2`)
     }
-    if (Planet == 1) {
+    if (Planet == 2) {
         scene.setBackgroundColor(6)
         effects.clouds.startScreenEffect()
         tiles.setTilemap(tilemap`planetscape3`)
@@ -152,24 +152,7 @@ assets.image`asteroid2`
 createHangar()
 dir = 1
 planets = [assets.image`planet`, assets.image`planet0`, assets.image`planet1`]
-let pscapes = [img`
-    . . . . . . . . . . . . . . . . 
-    . . . . . . . . . . . . . . . . 
-    . . . . . . . . . . . . . . . . 
-    . . . . . . . . . . . . . . . . 
-    . . . . . . . . . . . . . . . . 
-    . . . . . . . . . . . . . . . . 
-    . . . . . . . . . . . . . . . . 
-    . . . . . . . . . . . . . . . . 
-    . . . . . . . . . . . . . . . . 
-    . . . . . . . . . . . . . . . . 
-    . . . . . . . . . . . . . . . . 
-    . . . . . . . . . . . . . . . . 
-    . . . . . . . . . . . . . . . . 
-    . . . . . . . . . . . . . . . . 
-    . . . . . . . . . . . . . . . . 
-    . . . . . . . . . . . . . . . . 
-    `]
+let monsters = [assets.image`TieFighter`, assets.image`Dragon`, assets.image`IceDragon`]
 forever(function () {
     if (40 > Luke.x || 250 < Luke.x) {
         if (state == 0) {
