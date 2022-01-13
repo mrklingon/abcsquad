@@ -200,7 +200,7 @@ forever(function () {
     }
     if (state == 2) {
         villain = sprites.create(monsters[Planet], SpriteKind.Enemy)
-        villain.setPosition(300, randint(50, 100))
+        villain.setPosition(250, randint(50, 100))
         villain.follow(Luke, randint(50, 150))
         villain.setBounceOnWall(true)
         villain.setFlag(SpriteFlag.AutoDestroy, true)
