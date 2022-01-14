@@ -31,14 +31,13 @@ controller.B.onEvent(ControllerButtonEvent.Pressed, function () {
         Type = person
     }
     if (state == 2 && Type == vtype) {
+        effects.clouds.endScreenEffect()
+        tiles.setTilemap(tilemap`space`)
+        state = 1
+        planetNOW = 0
         carrier = sprites.create(assets.image`FleetCarrier`, SpriteKind.Fleet)
         carrier.setVelocity(-20, 0)
         carrier.setBounceOnWall(true)
-        effects.clouds.endScreenEffect()
-        tiles.setTilemap(tilemap`space`)
-        pause(1000)
-        state = 1
-        planetNOW = 0
     }
 })
 function createHangar () {
