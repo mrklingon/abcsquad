@@ -2,6 +2,7 @@ namespace SpriteKind {
     export const Vehicle = SpriteKind.create()
     export const orb = SpriteKind.create()
     export const ast = SpriteKind.create()
+    export const Fleet = SpriteKind.create()
 }
 sprites.onOverlap(SpriteKind.Player, SpriteKind.Vehicle, function (sprite, otherSprite) {
     if (Type == person) {
@@ -30,6 +31,9 @@ controller.B.onEvent(ControllerButtonEvent.Pressed, function () {
         Type = person
     }
     if (state == 2 && Type == vtype) {
+        carrier = sprites.create(assets.image`FleetCarrier`, SpriteKind.Fleet)
+        carrier.setVelocity(-20, 0)
+        carrier.setBounceOnWall(true)
         effects.clouds.endScreenEffect()
         tiles.setTilemap(tilemap`space`)
         pause(2000)
@@ -53,6 +57,7 @@ controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
     }
 })
 function startPlanet (num: number) {
+    carrier.destroy()
     Planet = num
     newplanet = sprites.create(planets[num], SpriteKind.orb)
     newplanet.setPosition(116, 91)
@@ -131,6 +136,7 @@ let rck: Sprite = null
 let zap: Sprite = null
 let newplanet: Sprite = null
 let Planet = 0
+let carrier: Sprite = null
 let YWing: Sprite = null
 let XWing: Sprite = null
 let planets: Image[] = []
@@ -168,6 +174,9 @@ forever(function () {
     if (40 > Luke.x || 250 < Luke.x) {
         if (state == 0) {
             if (vtype == Type) {
+                carrier = sprites.create(assets.image`FleetCarrier`, SpriteKind.Fleet)
+                carrier.setVelocity(-20, 0)
+                carrier.setBounceOnWall(true)
                 state = 1
                 tiles.setTilemap(tilemap`space`)
                 YWing.destroy()
