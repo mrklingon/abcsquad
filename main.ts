@@ -77,6 +77,13 @@ controller.left.onEvent(ControllerButtonEvent.Pressed, function () {
         dir = -1
     }
 })
+sprites.onOverlap(SpriteKind.Player, SpriteKind.Fleet, function (sprite, otherSprite) {
+    planetNOW = 0
+    carrier.destroy()
+    newplanet.destroy()
+    state = 0
+    createHangar()
+})
 sprites.onOverlap(SpriteKind.Player, SpriteKind.orb, function (sprite, otherSprite) {
     state = 2
     newplanet.destroy()
