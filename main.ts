@@ -36,19 +36,22 @@ controller.B.onEvent(ControllerButtonEvent.Pressed, function () {
         carrier.setBounceOnWall(true)
         effects.clouds.endScreenEffect()
         tiles.setTilemap(tilemap`space`)
-        pause(2000)
+        pause(1000)
         state = 1
-        startPlanet(randint(0, 2))
+        planetNOW = 0
     }
 })
 function createHangar () {
     XWing = sprites.create(assets.image`myImage`, SpriteKind.Vehicle)
     YWing = sprites.create(assets.image`Y-Wing`, SpriteKind.Vehicle)
+    Type = person
+    Luke.setImage(assets.image`Pilot`)
     XWing.setPosition(66, 39)
     YWing.setPosition(64, 89)
     controller.moveSprite(Luke)
     scene.cameraFollowSprite(Luke)
     scene.setBackgroundColor(11)
+    state = 0
     tiles.setTilemap(tilemap`hangar1`)
 }
 controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
@@ -57,7 +60,6 @@ controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
     }
 })
 function startPlanet (num: number) {
-    carrier.destroy()
     Planet = num
     newplanet = sprites.create(planets[num], SpriteKind.orb)
     newplanet.setPosition(116, 91)
@@ -78,6 +80,7 @@ controller.left.onEvent(ControllerButtonEvent.Pressed, function () {
 sprites.onOverlap(SpriteKind.Player, SpriteKind.orb, function (sprite, otherSprite) {
     state = 2
     newplanet.destroy()
+    carrier.destroy()
     if (Planet == 0) {
         scene.setBackgroundColor(9)
         effects.clouds.startScreenEffect()
@@ -170,6 +173,8 @@ createHangar()
 dir = 1
 planets = [assets.image`planet`, assets.image`planet0`, assets.image`planet1`]
 let monsters = [assets.image`TieFighter`, assets.image`Dragon`, assets.image`IceDragon`]
+// Leave Carrier - or wrap around on world/space
+// 
 forever(function () {
     if (40 > Luke.x || 250 < Luke.x) {
         if (state == 0) {
