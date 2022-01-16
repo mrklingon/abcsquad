@@ -81,6 +81,7 @@ sprites.onOverlap(SpriteKind.Player, SpriteKind.Fleet, function (sprite, otherSp
     carrier.destroy()
     newplanet.destroy()
     state = 0
+    info.changeLifeBy(1)
     createHangar()
 })
 sprites.onOverlap(SpriteKind.Player, SpriteKind.orb, function (sprite, otherSprite) {
@@ -118,11 +119,17 @@ controller.right.onEvent(ControllerButtonEvent.Pressed, function () {
     }
 })
 function laserBlast () {
-    zap = sprites.create(assets.image`laser`, SpriteKind.Projectile)
-    zap.setPosition(Luke.x, Luke.y)
-    music.pewPew.play()
-    zap.setVelocity(dir * 300, 0)
-    zap.setFlag(SpriteFlag.DestroyOnWall, true)
+    if (ship == "x") {
+        zap = sprites.createProjectileFromSprite(assets.image`laser`, Luke, dir * 600, 0)
+        zap.setPosition(Luke.x, Luke.y)
+        music.pewPew.play()
+        zap.setVelocity(dir * 300, 0)
+        zap.setFlag(SpriteFlag.DestroyOnWall, true)
+    } else {
+        zap = sprites.createProjectileFromSprite(assets.image`myImage1`, Luke, dir * 200, 0)
+        music.pewPew.play()
+        zap.setFlag(SpriteFlag.DestroyOnWall, true)
+    }
 }
 sprites.onOverlap(SpriteKind.Player, SpriteKind.ast, function (sprite, otherSprite) {
     otherSprite.destroy(effects.fire, 500)
