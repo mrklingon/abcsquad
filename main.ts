@@ -43,6 +43,9 @@ controller.B.onEvent(ControllerButtonEvent.Pressed, function () {
         carrier.setVelocity(-20, 0)
         carrier.setBounceOnWall(true)
     }
+    if (state == 1) {
+        clearDebris()
+    }
 })
 function createHangar () {
     XWing = sprites.create(assets.image`myImage`, SpriteKind.Vehicle)
@@ -212,7 +215,6 @@ forever(function () {
                 carrier.setVelocity(-20, 0)
                 carrier.setBounceOnWall(true)
                 state = 1
-                clearDebris()
                 tiles.setTilemap(tilemap`space`)
                 YWing.destroy()
                 XWing.destroy()
