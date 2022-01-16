@@ -4,6 +4,9 @@ namespace SpriteKind {
     export const ast = SpriteKind.create()
     export const Fleet = SpriteKind.create()
 }
+sprites.onDestroyed(SpriteKind.ast, function (sprite) {
+    _null = debris.removeAt(debris.indexOf(sprite))
+})
 sprites.onOverlap(SpriteKind.Player, SpriteKind.Vehicle, function (sprite, otherSprite) {
     if (Type == person) {
         if (XWing == otherSprite) {
@@ -33,6 +36,7 @@ controller.B.onEvent(ControllerButtonEvent.Pressed, function () {
     if (state == 2 && Type == vtype) {
         effects.clouds.endScreenEffect()
         tiles.setTilemap(tilemap`space`)
+        clearDebris()
         state = 1
         planetNOW = 0
         carrier = sprites.create(assets.image`FleetCarrier`, SpriteKind.Fleet)
@@ -58,6 +62,11 @@ controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
         laserBlast()
     }
 })
+function clearDebris () {
+    for (let value of debris) {
+        value.destroy()
+    }
+}
 function startPlanet (num: number) {
     Planet = num
     newplanet = sprites.create(planets[num], SpriteKind.orb)
@@ -86,6 +95,7 @@ sprites.onOverlap(SpriteKind.Player, SpriteKind.Fleet, function (sprite, otherSp
 })
 sprites.onOverlap(SpriteKind.Player, SpriteKind.orb, function (sprite, otherSprite) {
     state = 2
+    clearDebris()
     newplanet.destroy()
     carrier.destroy()
     if (Planet == 0) {
@@ -131,6 +141,9 @@ function laserBlast () {
         zap.setFlag(SpriteFlag.DestroyOnWall, true)
     }
 }
+sprites.onDestroyed(SpriteKind.Enemy, function (sprite) {
+    _null = debris.removeAt(debris.indexOf(sprite))
+})
 sprites.onOverlap(SpriteKind.Player, SpriteKind.ast, function (sprite, otherSprite) {
     otherSprite.destroy(effects.fire, 500)
     music.knock.play()
@@ -155,6 +168,7 @@ let Planet = 0
 let carrier: Sprite = null
 let YWing: Sprite = null
 let XWing: Sprite = null
+let _null: Sprite = null
 let planets: Image[] = []
 let dir = 0
 let ys: Image[] = []
@@ -166,7 +180,9 @@ let Luke: Sprite = null
 let vtype = 0
 let person = 0
 let ship = ""
+let debris: Sprite[] = []
 info.setLife(10)
+debris = []
 ship = ""
 person = 1
 vtype = 3
@@ -196,6 +212,7 @@ forever(function () {
                 carrier.setVelocity(-20, 0)
                 carrier.setBounceOnWall(true)
                 state = 1
+                clearDebris()
                 tiles.setTilemap(tilemap`space`)
                 YWing.destroy()
                 XWing.destroy()
@@ -222,6 +239,7 @@ forever(function () {
             rck.setPosition(randint(50, 100), randint(50, 100))
             rck.setVelocity(randint(-50, 50), randint(-50, 50))
             rck.setFlag(SpriteFlag.AutoDestroy, true)
+            debris.push(rck)
             pause(500)
         }
     }
@@ -231,6 +249,7 @@ forever(function () {
         villain.follow(Luke, randint(25, 50))
         villain.setBounceOnWall(true)
         villain.setFlag(SpriteFlag.AutoDestroy, true)
+        debris.push(villain)
         pause(randint(250, 500))
     }
 })
